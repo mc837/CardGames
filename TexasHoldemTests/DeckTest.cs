@@ -3,6 +3,8 @@ using CardGames;
 
 namespace TexasHoldemTests
 {
+    // can deal 2 cards to a hand
+
     internal class DeckTest
     {
         [Test]
@@ -27,6 +29,7 @@ namespace TexasHoldemTests
 
             Assert.That(card.Equals(expectedCard));
         }
+
 
         [Test]
         public void Should_ShuffleDeck_When_ShuffleIsInvoked()
