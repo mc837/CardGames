@@ -4,6 +4,7 @@ namespace CardGames
     {
         public string Suit { private get; set; }
         public string Value { private get; set; }
+        public int NumericalValue {get; set; }
 
         public override bool Equals(object obj)
         {

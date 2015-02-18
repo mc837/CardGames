@@ -17,15 +17,15 @@ namespace TexasHoldemTests
             Assert.That(card, Is.Not.EqualTo(null));
         }
 
-        [TestCase("Ace", "Hearts", 0)]
-        [TestCase("King", "Hearts", 0)]
-        [TestCase("Ace", "Clubs", 0)]
-        public void Should_DealCard_When_DealIsInvokedWithAPosition(string value, string suit, int deckPosition)
+        [TestCase("Ace", 1, "Hearts", 0)]
+        [TestCase("King", 13, "Hearts", 12)]
+        [TestCase("Ace", 1, "Clubs", 13)]
+        public void Should_DealCard_When_DealIsInvokedWithAPosition(string value, int numericalValue, string suit, int deckPosition)
         {
             var deck = new Deck();
-            var expectedCard = new Card {Value = "Ace", Suit = "Hearts"};
+            var expectedCard = new Card {Value = value, NumericalValue = numericalValue, Suit = suit};
 
-            var card = deck.Deal(0);
+            var card = deck.Deal(deckPosition);
 
             Assert.That(card.Equals(expectedCard));
         }

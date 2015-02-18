@@ -25,7 +25,7 @@ namespace CardGames
                     {
                         cardValue = i.ToString(CultureInfo.InvariantCulture);
                     }
-                    _deck[position] = new Card {Value = cardValue, Suit = suit};
+                    _deck[position] = new Card {Value = cardValue, NumericalValue = i, Suit = suit};
                     position++;
                 }
             }
