@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using CardGames.Enums;
+using NUnit.Framework;
 using CardGames;
 
 namespace TexasHoldemTests
