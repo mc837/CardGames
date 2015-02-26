@@ -43,12 +43,12 @@ namespace TexasHoldemTests
         [Test]
         public void Should_ReturnAPair_When_EvaluatorIsInvoked()
         {
-            _communityCards.FlopCard1 = new Card(1, Suit.Hearts);
+            _communityCards.FlopCard3 = new Card(1, Suit.Hearts);
             var expextedFinalHand = new FinalHand
             {
                 card1 = new Card(1, Suit.Clubs),
                 card2 = new Card(1, Suit.Hearts),
-                card3 = new Card(7, Suit.Spades),
+                card3 = new Card(8, Suit.Hearts),
                 card4 = new Card(10, Suit.Clubs),
                 card5 = new Card(13, Suit.Spades),
                 rank = HandRanking.Pair
@@ -59,16 +59,16 @@ namespace TexasHoldemTests
             Assert.That(score, Is.EqualTo(expextedFinalHand));
         }
 
-        [Test]
-        public void Should_ReturnThreeOfAKind_When_EvaluatorIsInvoked()
-        {
-            _playersHand.Card2 = new Card(1, Suit.Diamonds);
-            _communityCards.FlopCard1 = new Card(1, Suit.Hearts);
-
-            var scorer = new Scorer();
-            var score = scorer.Evaluate(_playersHand, _communityCards);
-            Assert.That(score, Is.EqualTo("Three Of A Kind"));
-        }
+//        [Test]
+//        public void Should_ReturnThreeOfAKind_When_EvaluatorIsInvoked()
+//        {
+//            _playersHand.Card2 = new Card(1, Suit.Diamonds);
+//            _communityCards.FlopCard1 = new Card(1, Suit.Hearts);
+//
+//            var scorer = new Scorer();
+//            var score = scorer.Evaluate(_playersHand, _communityCards);
+//            Assert.That(score, Is.EqualTo("Three Of A Kind"));
+//        }
 
 //        [Test]
 //        public void Should_ReturnFourOfAKind_When_EvaluatorIsInvoked()

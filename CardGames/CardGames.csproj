@@ -42,8 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="Checker.cs" />
     <Compile Include="CommunityCards.cs" />
-    <Compile Include="Deck.cs" />
+    <Compile Include="Enums\Deck.cs" />
     <Compile Include="Enums\HandRanking.cs" />
     <Compile Include="Enums\Suit.cs" />
     <Compile Include="FinalHand.cs" />
