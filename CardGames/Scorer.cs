@@ -1,20 +1,15 @@
 using System.Collections.Generic;
+using CardGames.Enums;
 
 namespace CardGames
 {
     public class Scorer
     {
-        public FinalHand Evaluate(Hand playersHand, CommunityCards communityCards)
+        public HandRanking? Evaluate(Hand playersHand, CommunityCards communityCards)
         {
             var availableCards = Combine(playersHand, communityCards);
             var check = new Checker();
-            FinalHand finalHand;
-
-            if ((finalHand=check.ForSinglePair(availableCards)) != null)
-            {
-                return finalHand;
-            }
-            return null;
+            return check.Check(availableCards);
         }
 
         private static List<Card> Combine(Hand playersHand, CommunityCards communityCards)

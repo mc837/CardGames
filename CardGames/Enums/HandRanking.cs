@@ -2,15 +2,15 @@ namespace CardGames.Enums
 {
     public enum HandRanking
     {
-        HighCard,
-        Pair,
-        TwoPair,
-        ThreeOfAKind,
-        Straight,
-        Flush,
-        FullHouse,
-        FourOfAKind,
+        RoyalFlush,
         StraightFlush,
-        RoyalFlush
+        FourOfAKind,
+        FullHouse,
+        Flush,
+        Straight,
+        ThreeOfAKind,
+        TwoPair,
+        Pair,
+        HighCard
     }
 }

@@ -11,27 +11,18 @@ namespace CardGames
             Suit = suit;
         }
 
-        public Suit Suit { private get; set; }
+        public Suit Suit { get; set; }
 
         public string Value()
         {
             if (NumericalValue == 1 || NumericalValue > 10)
-                    {
-                        return PictureValue(NumericalValue);
-                    }
-                    else
-                    {
-                       return NumericalValue.ToString(CultureInfo.InvariantCulture);
-                    }
+            {
+                return PictureValue(NumericalValue);
+            }
+            return NumericalValue.ToString(CultureInfo.InvariantCulture);
         }
-        public int NumericalValue {get; set; }
 
-        public override bool Equals(object obj)
-        {
-            if (obj.GetType() != typeof(Card)) return false;
-            var card = obj as Card;
-            return card != null && (Suit.Equals(card.Suit) && NumericalValue.Equals(card.NumericalValue));
-        }
+        public int NumericalValue { get; set; }
 
         private static string PictureValue(int i)
         {
@@ -45,6 +36,26 @@ namespace CardGames
                     return "King";
                 default:
                     return "Ace";
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != typeof(Card)) return false;
+            var card = obj as Card;
+            return card != null && (Suit.Equals(card.Suit) && NumericalValue.Equals(card.NumericalValue));
+        }
+
+        protected bool Equals(Card other)
+        {
+            return Suit == other.Suit && NumericalValue == other.NumericalValue;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((int)Suit * 397) ^ NumericalValue;
             }
         }
     }

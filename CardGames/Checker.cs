@@ -1,50 +1,30 @@
 ﻿using System.Collections.Generic;
+using CardGames.Detectors;
 using CardGames.Enums;
 
 namespace CardGames
 {
-    class Checker
+    public class Checker
     {
-        public FinalHand ForSinglePair(List<Card> availableCards)
+        private readonly List<IDetect> _handDetector = new List<IDetect>
         {
-            var count = 0;
-            Card pairCard1 = null;
-            Card pairCard2 = null;
-            FinalHand finalHand = null;
+            new RoyalFlushDetector(),
+            new PairDectector()
+        };
 
-            //foreach
-            for (var i = 0; i < 7; i++)
+        public HandRanking? Check(List<Card> availableCards)
+        {
+            HandRanking? hand = null;
+            foreach (var handResult in _handDetector)
             {
-                if (i + 1 != 7 && availableCards[i].NumericalValue == availableCards[i + 1].NumericalValue)
+                hand = handResult.Detect(availableCards);
+                if (hand != null)
                 {
-                    count++;
-                    pairCard1 = availableCards[i];
-                    pairCard2 = availableCards[i + 1];
+                    break;
                 }
             }
-            if (count == 1)
-            {
-                finalHand = GetFinalHand(pairCard1, pairCard2, availableCards);
-
-            };
-            return finalHand;
-        }
-
-        private static FinalHand GetFinalHand(Card pairCard1, Card pairCard2, List<Card> availableCards)
-        {
-            availableCards.RemoveAll(x => x.NumericalValue == pairCard1.NumericalValue);
-            availableCards.Sort((x, y) => x.NumericalValue.CompareTo(y.NumericalValue));
-            availableCards.RemoveRange(0, 2);
-            var finalHand = new FinalHand
-            {
-                card1 = pairCard1,
-                card2 = pairCard2,
-                card3 = availableCards[0],
-                card4 = availableCards[1],
-                card5 = availableCards[2],
-                rank = HandRanking.Pair
-            };
-            return finalHand;
+            return hand;
         }
     }
 }
+
