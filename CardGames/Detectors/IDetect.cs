@@ -5,6 +5,6 @@ namespace CardGames.Detectors
 {
     public interface IDetect
     {
-        HandRanking? Detect(List<Card> availableCards);
+        HandRanking? Detect(IEnumerable<Card> availableCards);
     }
 }

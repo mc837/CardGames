@@ -6,7 +6,7 @@ namespace CardGames.Detectors
 {
     internal class RoyalFlushDetector : IDetect
     {
-        public HandRanking? Detect(List<Card> availableCards)
+        public HandRanking? Detect(IEnumerable<Card> availableCards)
         {
             HandRanking? handRank = null;
 

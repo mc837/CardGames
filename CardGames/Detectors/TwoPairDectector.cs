@@ -3,13 +3,13 @@ using CardGames.Enums;
 
 namespace CardGames.Detectors
 {
-    public class PairDectector : IDetect
+    public class TwoPairDectector : IDetect
     {
         public HandRanking? Detect(IEnumerable<Card> availableCards)
         {
-            var rankableCards = new List<Card>(availableCards);
             var count = 0;
-            HandRanking? handRank = null;
+            HandRanking? handRanking = null;
+            var rankableCards = new List<Card>(availableCards);
 
             for (var i = 0; i < 7; i++)
             {
@@ -17,13 +17,13 @@ namespace CardGames.Detectors
                 {
                     count++;
                 }
+                if (count == 2)
+                {
+                    handRanking = HandRanking.TwoPair;
+                }
             }
-            if (count == 1)
-            {
-                handRank = HandRanking.Pair;
-
-            }
-            return handRank;
+            return handRanking;
         }
+        
     }
 }

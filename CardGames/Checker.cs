@@ -9,6 +9,13 @@ namespace CardGames
         private readonly List<IDetect> _handDetector = new List<IDetect>
         {
             new RoyalFlushDetector(),
+            new StraightFlushDetector(),
+            new FourOfAKindDetector(),
+            new FullhouseDetector(),
+            new FlushDetector(),
+            new StraightDetector(),
+            new ThreeOfAKindDectector(),
+            new TwoPairDectector(),
             new PairDectector()
         };
 
@@ -22,6 +29,7 @@ namespace CardGames
                 {
                     break;
                 }
+                hand = HandRanking.HighCard;
             }
             return hand;
         }

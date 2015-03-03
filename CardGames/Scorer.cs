@@ -25,65 +25,10 @@ namespace CardGames
                 communityCards.Turn
             };
 
+            //sort low to high
             combinedCards.Sort((x, y) => x.NumericalValue.CompareTo(y.NumericalValue));
 
             return combinedCards;
         }
-
-//        private bool HighCard(List<Card> availableCards)
-//        {
-//            return true;
-//        }
-//
-//        
-//
-//        private static bool CheckForThreeOfAKind(List<Card> availableCards)
-//        {
-//            var count = 0;
-//            var cardNumericalValue = 0;
-//            var occuranceCount = 0;
-//            for (var i = 0; i < 7; i++)
-//            {
-//                if (i + 1 != 7 && availableCards[i].NumericalValue == availableCards[i + 1].NumericalValue)
-//                {
-//                    count++;
-//                    cardNumericalValue = availableCards[i].NumericalValue;
-//                }
-//            }
-//            for (var i = 0; i < 7; i++)
-//            {
-//                if (cardNumericalValue == availableCards[i].NumericalValue)
-//                {
-//                    occuranceCount++;
-//                }
-//            }
-//            return (count == 2 && occuranceCount == 3);
-//        }
-//
-//        private static bool CheckForFourOfAKind(List<Card> availableCards)
-//        {
-//            var count = 0;
-//            for (var i = 0; i < 7; i++)
-//            {
-//                if (i + 1 != 7 && availableCards[i].NumericalValue == availableCards[i + 1].NumericalValue)
-//                {
-//                    count++;
-//                }
-//            }
-//            return count == 3;
-//        }
-//
-//        private static bool CheckForTwoPair(List<Card> availableCards)
-//        {
-//            var count = 0;
-//            for (var i = 0; i < 7; i++)
-//            {
-//                if (i + 1 != 7 && availableCards[i].NumericalValue == availableCards[i + 1].NumericalValue)
-//                {
-//                    count++;
-//                }
-//            }
-//            return count == 2;
-//        }
     }
 }
