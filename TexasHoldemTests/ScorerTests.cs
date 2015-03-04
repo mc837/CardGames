@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using CardGames;
+﻿using CardGames;
 using CardGames.Enums;
 using NUnit.Framework;
 
