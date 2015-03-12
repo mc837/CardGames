@@ -7,6 +7,7 @@ namespace CardGames.Detectors
     {
         public HandRanking? Detect(IEnumerable<Card> availableCards)
         {
+            //do like for of a kind
            var count = 0;
            HandRanking? handRanking = null;
            var rankableCards = new List<Card>(availableCards);

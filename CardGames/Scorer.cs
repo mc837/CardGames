@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CardGames.Detectors;
 using CardGames.Enums;
 
 namespace CardGames

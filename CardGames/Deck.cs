@@ -28,8 +28,8 @@ namespace CardGames
 
         public void Shuffle()
         {
-            var rnd = new Random();
-            var shuffledDeck = _deck.OrderBy(x => rnd.Next()).ToList();
+            var rnd = new Random(Guid.NewGuid().GetHashCode());
+            var shuffledDeck = _deck.OrderBy(x => rnd.Next(0,51)).ToList();
             _deck = shuffledDeck;
         }
     }

@@ -80,6 +80,40 @@ namespace TexasHoldemTests
         }
 
         [Test]
+        public void Should_ReturnFullhouse2_When_EvaluateIsInvoked()
+        {
+            _playersHand.Card1 = new Card(1, Suit.Clubs);
+            _playersHand.Card2 = new Card(8, Suit.Clubs);
+            _communityCards.FlopCard1 = new Card(5, Suit.Diamonds);
+            _communityCards.FlopCard2 = new Card(8, Suit.Diamonds);
+            _communityCards.FlopCard3 = new Card(2, Suit.Clubs);
+            _communityCards.River = new Card(5, Suit.Clubs);
+            _communityCards.Turn = new Card(8, Suit.Hearts);
+            const HandRanking expectedResult = HandRanking.FullHouse;
+
+            var scorer = new Scorer();
+            var score = scorer.Evaluate(_playersHand, _communityCards);
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public void Should_ReturnFullhouse3_When_EvaluateIsInvoked()
+        {
+            _playersHand.Card1 = new Card(5, Suit.Spades);
+            _playersHand.Card2 = new Card(1, Suit.Clubs);
+            _communityCards.FlopCard1 = new Card(13, Suit.Hearts);
+            _communityCards.FlopCard2 = new Card(5, Suit.Hearts);
+            _communityCards.FlopCard3 = new Card(9, Suit.Spades);
+            _communityCards.River = new Card(13, Suit.Diamonds);
+            _communityCards.Turn = new Card(5, Suit.Clubs);
+            const HandRanking expectedResult = HandRanking.FullHouse;
+
+            var scorer = new Scorer();
+            var score = scorer.Evaluate(_playersHand, _communityCards);
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
         public void Should_ReturnAFlush_When_EvaluateIsInvoked()
         {
             _communityCards.River = new Card(6, Suit.Hearts);

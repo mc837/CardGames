@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Common;
 using CardGames.Detectors;
 using CardGames.Enums;
 
@@ -6,6 +7,11 @@ namespace CardGames
 {
     public class Checker
     {
+        public Checker()
+//        public Checker(List<IDetect> cardsDetector)
+        {
+         //from source new up   
+        }
         private readonly List<IDetect> _handDetector = new List<IDetect>
         {
             new RoyalFlushDetector(),
