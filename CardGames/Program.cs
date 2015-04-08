@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CardGames
 {
@@ -8,6 +9,7 @@ namespace CardGames
         {
             var deck = new Deck();
             var scorer = new Scorer();
+            var mongo = new Mongo();
 
             while (true)
             {
@@ -20,13 +22,13 @@ namespace CardGames
         public static void play (Deck deck, Scorer scorer)
         {
             deck.Shuffle();
-            Hand hand = new Hand
+            List<Card> hand = new List<Card>
             {
-                Card1 = deck.Deal(0),
-                Card2 = deck.Deal(1)
+               deck.Deal(0),
+               deck.Deal(1)
             };
-            var playersCard1Display = string.Format(hand.Card1.Value() + " " + hand.Card1.Suit);
-            var playersCard2Display = string.Format(hand.Card2.Value() + " " + hand.Card2.Suit);
+            var playersCard1Display = string.Format(hand[0].Value() + " " + hand[0].Suit);
+            var playersCard2Display = string.Format(hand[1].Value() + " " + hand[1].Suit);
 
             Console.WriteLine("Hand:");
             Console.WriteLine("{0}      {1}", playersCard1Display, playersCard2Display);
@@ -35,21 +37,21 @@ namespace CardGames
             Console.WriteLine("");
 
             Console.WriteLine("Community Cards: ");
-            CommunityCards communityCards = new CommunityCards
+            List<Card> communityCards = new List<Card>
             {
-                FlopCard1 = deck.Deal(2),
-                FlopCard2 = deck.Deal(3),
-                FlopCard3 = deck.Deal(4),
-                River = deck.Deal(5),
-                Turn = deck.Deal(6)
+                deck.Deal(2),
+                deck.Deal(3),
+                deck.Deal(4),
+                deck.Deal(5),
+                deck.Deal(6)
             };
 
             Console.WriteLine("{0} {1}   {2} {3}   {4} {5}   {6} {7}   {8} {9}",
-                communityCards.FlopCard1.Value(), communityCards.FlopCard1.Suit,
-                communityCards.FlopCard2.Value(), communityCards.FlopCard2.Suit,
-                communityCards.FlopCard3.Value(), communityCards.FlopCard3.Suit,
-                communityCards.River.Value(), communityCards.River.Suit,
-                communityCards.Turn.Value(), communityCards.Turn.Suit
+                communityCards[0].Value(), communityCards[0].Suit,
+                communityCards[1].Value(), communityCards[1].Suit,
+                communityCards[2].Value(), communityCards[2].Suit,
+                communityCards[3].Value(), communityCards[3].Suit,
+                communityCards[4].Value(), communityCards[4].Suit
                 );
             //Console.ReadKey();
 

@@ -7,7 +7,6 @@ namespace CardGames.Detectors
     {
         public HandRanking? Detect(IEnumerable<Card> availableCards)
         {
-            ////new up 3 of kind and pair detectors.
             var count = 0;
             HandRanking? handRank = null;
             var rankableCards = new List<Card>(availableCards);
