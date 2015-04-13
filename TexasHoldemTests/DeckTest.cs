@@ -18,9 +18,10 @@ namespace TexasHoldemTests
             Assert.That(card, Is.Not.EqualTo(null));
         }
 
-        [TestCase( 1, Suit.Clubs, 0)]
-        [TestCase( 13, Suit.Clubs, 12)]
-        [TestCase( 1, Suit.Diamonds, 13)]
+        [TestCase( 2, Suit.Clubs, 0)]
+        [TestCase(13, Suit.Clubs, 11)]
+        [TestCase(14, Suit.Clubs, 12)]
+        [TestCase( 2, Suit.Diamonds, 13)]
         public void Should_DealCard_When_DealIsInvokedWithAPosition(int numericalValue, Suit suit, int deckPosition)
         {
             var deck = new Deck();

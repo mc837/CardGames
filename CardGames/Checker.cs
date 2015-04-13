@@ -15,19 +15,19 @@ namespace CardGames
             _availableCards = availableCards;
         }
 
-        public HandRanking? Check()
+        public FinalHand Check()
         {
-            HandRanking? hand = null;
+            FinalHand finalHand = null;
             foreach (var handResult in _handDetector)
             {
-                hand = handResult.Detect(_availableCards);
-                if (hand != null)
+                finalHand = handResult.Detect(_availableCards);
+                if (finalHand.card1 != null)
                 {
                     break;
                 }
-                hand = HandRanking.HighCard;
+                finalHand.rank = HandRanking.HighCard;
             }
-            return hand;
+            return finalHand;
         }
     }
 }

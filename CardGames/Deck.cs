@@ -13,7 +13,7 @@ namespace CardGames
         {
             for (var suit = 0; suit < 4; suit++)
             {
-                for (var cardValue = 1; cardValue < 14; cardValue++)
+                for (var cardValue = 2; cardValue < 15; cardValue++)
                 {
                     _deck.Add(new Card(cardValue, (Suit)suit));
                 }

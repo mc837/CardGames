@@ -8,18 +8,18 @@ namespace CardGames
     {
         private readonly List<IDetect> _handDetector = new List<IDetect>
         {
-            new RoyalFlushDetector(),
-            new StraightFlushDetector(),
-            new FourOfAKindDetector(),
-            new FullhouseDetector(),
-            new FlushDetector(),
-            new StraightDetector(),
-            new ThreeOfAKindDectector(),
-            new TwoPairDectector(),
+//            new RoyalFlushDetector(),
+//            new StraightFlushDetector(),
+//            new FourOfAKindDetector(),
+//            new FullhouseDetector(),
+//            new FlushDetector(),
+//            new StraightDetector(),
+//            new ThreeOfAKindDectector(),
+//            new TwoPairDectector(),
             new PairDectector()
         };
 
-        public HandRanking? Evaluate(List<Card> playersHand, List<Card> communityCards)
+        public FinalHand Evaluate(List<Card> playersHand, List<Card> communityCards)
         {
             var availableCards = Combine(playersHand, communityCards);
             var check = new Checker(_handDetector, availableCards);

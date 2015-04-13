@@ -138,6 +138,39 @@ namespace TexasHoldemTests
         }
 
         [Test]
+        public void Should_ReturnAStraight_When_EvaluateIsInvoked2()
+        {
+            _playersHand[0] = new Card(7, Suit.Diamonds);
+            _playersHand[1] = new Card(13, Suit.Diamonds);
+            _communityCards[0] = new Card(12, Suit.Spades);
+            _communityCards[1] = new Card(8, Suit.Spades);
+            _communityCards[2] = new Card(9, Suit.Spades);
+            _communityCards[3] = new Card(8, Suit.Clubs);
+            _communityCards[4] = new Card(11, Suit.Clubs);
+            const HandRanking expectedResult = HandRanking.Straight;
+
+            var scorer = new Scorer();
+            var score = scorer.Evaluate(_playersHand, _communityCards);
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+        //Ac 5c 7c 8h kh 6d qh
+        [Test]
+        public void Should_ReturnAStraight_When_EvaluateIsInvoked3()
+        {
+            _playersHand[0] = new Card(71, Suit.Clubs);
+            _playersHand[1] = new Card(5, Suit.Clubs);
+            _communityCards[0] = new Card(7, Suit.Clubs);
+            _communityCards[1] = new Card(8, Suit.Hearts);
+            _communityCards[2] = new Card(13, Suit.Hearts);
+            _communityCards[3] = new Card(6, Suit.Diamonds);
+            _communityCards[4] = new Card(12, Suit.Hearts);
+            const HandRanking expectedResult = HandRanking.Straight;
+
+            var scorer = new Scorer();
+            var score = scorer.Evaluate(_playersHand, _communityCards);
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+        [Test]
         public void Should_ReturnThreeOfAKind_When_EvaluateIsInvoked()
         {
             _playersHand[0] = new Card(9, Suit.Spades);
