@@ -27,7 +27,7 @@ namespace TexasHoldemTests
         {
 //            new RoyalFlushDetector(),
 //            new StraightFlushDetector(),
-//            new FourOfAKindDetector(),
+            new FourOfAKindDetector(),
 //            new FullhouseDetector(),
 //            new FlushDetector(),
 //            new StraightDetector(),
@@ -115,6 +115,35 @@ namespace TexasHoldemTests
                 card4 = new Card(14, Suit.Hearts),
                 card5 = new Card(13, Suit.Clubs),
                 rank = HandRanking.ThreeOfAKind
+            };
+
+            OrderCards();
+            var score = check(_handDetector, _availableCards);
+
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public void Should_ReturnfourOfAKind_When_EvaluatorIsInvoked()
+        {
+            _availableCards = new List<Card>
+            {
+                new Card(7, Suit.Hearts),
+                new Card(7, Suit.Diamonds),
+                new Card(2, Suit.Clubs),
+                new Card(7, Suit.Clubs),
+                new Card(14, Suit.Hearts),
+                new Card(7, Suit.Spades),
+                new Card(4, Suit.Hearts)
+            };
+            var expectedResult = new FinalHand
+            {
+                card1 = new Card(7, Suit.Hearts),
+                card2 = new Card(7, Suit.Diamonds),
+                card3 = new Card(7, Suit.Clubs),
+                card4 = new Card(7, Suit.Spades),
+                card5 = new Card(14, Suit.Hearts),
+                rank = HandRanking.FourOfAKind
             };
 
             OrderCards();
