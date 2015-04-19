@@ -124,6 +124,35 @@ namespace TexasHoldemTests
         }
 
         [Test]
+        public void Should_Returnhighest4TwoPair_When_EvaluatorIsInvoked()
+        {
+            _availableCards = new List<Card>
+            {
+                new Card(2, Suit.Clubs),
+                new Card(4, Suit.Hearts),
+                new Card(4, Suit.Clubs),
+                new Card(14, Suit.Diamonds),
+                new Card(7, Suit.Spades),
+                new Card(6, Suit.Clubs),
+                new Card(7, Suit.Clubs)
+            };
+            var expectedResult = new FinalHand
+            {
+                card1 = new Card(7, Suit.Clubs),
+                card2 = new Card(7, Suit.Spades),
+                card3 = new Card(4, Suit.Clubs),
+                card4 = new Card(4, Suit.Hearts),
+                card5 = new Card(14, Suit.Diamonds),
+                rank = HandRanking.TwoPair
+            };
+
+            OrderCards();
+            var score = check(_handDetector, _availableCards);
+
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
         public void Should_ReturnThreeOfAKind_When_EvaluatorIsInvoked()
         {
             _availableCards = new List<Card>

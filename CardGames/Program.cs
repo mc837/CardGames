@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CardGames.Enums;
 
 namespace CardGames
 {
@@ -59,6 +60,17 @@ namespace CardGames
 
             var score = scorer.Evaluate(hand, communityCards);
             Console.WriteLine(score.rank);
+            Console.WriteLine("");
+            if (score.rank != HandRanking.HighCard)
+            {
+                Console.WriteLine("{0} {1}   {2} {3}   {4} {5}   {6} {7}   {8} {9}",
+                    score.card1.Value(), score.card1.Suit,
+                    score.card2.Value(), score.card2.Suit,
+                    score.card3.Value(), score.card3.Suit,
+                    score.card4.Value(), score.card4.Suit,
+                    score.card5.Value(), score.card5.Suit
+                    );
+            }
             Console.ReadKey();
         }
     }

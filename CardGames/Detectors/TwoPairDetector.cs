@@ -30,8 +30,8 @@ namespace CardGames.Detectors
                 finalHand.card3 = pairedCards[2];
                 finalHand.card4 = pairedCards[3];
 
-                rankableCards.RemoveAll(c => c.NumericalValue == finalHand.card1.NumericalValue && 
-                    c.NumericalValue == finalHand.card3.NumericalValue);
+                rankableCards.RemoveAll(c => c.NumericalValue == finalHand.card1.NumericalValue);
+                rankableCards.RemoveAll(c => c.NumericalValue == finalHand.card3.NumericalValue);                
 
                 finalHand.card5 = rankableCards[2];
                 finalHand.rank = HandRanking.TwoPair;
