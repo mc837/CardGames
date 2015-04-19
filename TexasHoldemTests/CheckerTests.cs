@@ -38,6 +38,35 @@ namespace TexasHoldemTests
         };
 
         [Test]
+        public void Should_ReturnHighCard_When_EvaluatorIsInvoked()
+        {
+            _availableCards = new List<Card>
+            {
+                new Card(5, Suit.Hearts),
+                new Card(4, Suit.Diamonds),
+                new Card(13, Suit.Diamonds),
+                new Card(9, Suit.Spades),
+                new Card(7, Suit.Hearts),
+                new Card(12, Suit.Hearts),
+                new Card(6, Suit.Hearts)
+            };
+            var expectedResult = new FinalHand
+            {
+                card1 = new Card(13, Suit.Diamonds),
+                card2 = new Card(12, Suit.Hearts),
+                card3 = new Card(9, Suit.Spades),
+                card4 = new Card(7, Suit.Hearts),
+                card5 = new Card(6, Suit.Hearts),
+                rank = HandRanking.HighCard
+            };
+
+            OrderCards();
+            var score = check(_handDetector, _availableCards);
+
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
         public void Should_ReturnAPair_When_EvaluatorIsInvoked()
         {
             _availableCards = new List<Card>
@@ -174,35 +203,6 @@ namespace TexasHoldemTests
                 card4 = new Card(3, Suit.Diamonds),
                 card5 = new Card(2, Suit.Hearts),
                 rank = HandRanking.Straight
-            };
-
-            OrderCards();
-            var score = check(_handDetector, _availableCards);
-
-            Assert.That(score, Is.EqualTo(expectedResult));
-        }
-
-        [Test]
-        public void Should_ReturnStraight2_When_EvaluatorIsInvoked()
-        {
-            _availableCards = new List<Card>
-            {
-                new Card(5, Suit.Hearts),
-                new Card(4, Suit.Diamonds),
-                new Card(13, Suit.Diamonds),
-                new Card(9, Suit.Spades),
-                new Card(7, Suit.Hearts),
-                new Card(12, Suit.Hearts),
-                new Card(6, Suit.Hearts)
-            };
-            var expectedResult = new FinalHand
-            {
-                card1 = new Card(13, Suit.Diamonds),
-                card2 = new Card(12, Suit.Hearts),
-                card3 = new Card(9, Suit.Spades),
-                card4 = new Card(7, Suit.Hearts),
-                card5 = new Card(6, Suit.Hearts),
-                rank = HandRanking.HighCard
             };
 
             OrderCards();
