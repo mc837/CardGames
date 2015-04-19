@@ -212,6 +212,64 @@ namespace TexasHoldemTests
         }
 
         [Test]
+        public void Should_ReturnStraightWithAcesHigh_When_EvaluatorIsInvoked()
+        {
+            _availableCards = new List<Card>
+            {
+                new Card(12, Suit.Hearts),
+                new Card(14, Suit.Diamonds),
+                new Card(10, Suit.Clubs),
+                new Card(13, Suit.Clubs),
+                new Card(5, Suit.Hearts),
+                new Card(11, Suit.Diamonds),
+                new Card(4, Suit.Hearts)
+            };
+            var expectedResult = new FinalHand
+            {
+                card1 = new Card(14, Suit.Diamonds),
+                card2 = new Card(13, Suit.Clubs),
+                card3 = new Card(12, Suit.Hearts),
+                card4 = new Card(11, Suit.Diamonds),
+                card5 = new Card(10, Suit.Clubs),
+                rank = HandRanking.Straight
+            };
+
+            OrderCards();
+            var score = check(_handDetector, _availableCards);
+
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public void Should_ReturnStraightWithAcesLow_When_EvaluatorIsInvoked()
+        {
+            _availableCards = new List<Card>
+            {
+                new Card(2, Suit.Hearts),
+                new Card(3, Suit.Diamonds),
+                new Card(4, Suit.Clubs),
+                new Card(14, Suit.Clubs),
+                new Card(5, Suit.Hearts),
+                new Card(7, Suit.Diamonds),
+                new Card(4, Suit.Hearts)
+            };
+            var expectedResult = new FinalHand
+            {
+                card1 = new Card(5, Suit.Hearts),
+                card2 = new Card(4, Suit.Clubs),
+                card3 = new Card(3, Suit.Diamonds),
+                card4 = new Card(2, Suit.Hearts),
+                card5 = new Card(14, Suit.Clubs),
+                rank = HandRanking.Straight
+            };
+
+            OrderCards();
+            var score = check(_handDetector, _availableCards);
+
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
         public void Should_ReturnFlush_When_EvaluatorIsInvoked()
         {
             _availableCards = new List<Card>

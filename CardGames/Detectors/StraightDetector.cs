@@ -10,6 +10,43 @@ namespace CardGames.Detectors
         {
             var finalHand = new FinalHand();
             var rankableCards = new List<Card>(availableCards);
+
+            finalHand = StraightCheck(rankableCards, false, finalHand);
+            if (finalHand.rank != HandRanking.Straight)
+            {
+                //if no straight are there any Aces?
+                if (AnyAces(rankableCards))
+                {
+                    //true - try low
+                    finalHand = StraightCheck(rankableCards, true, finalHand);
+                    if (finalHand.rank == HandRanking.Straight)
+                    {
+                        finalHand.card5.NumericalValue = 14;
+                    }
+                }
+            }
+
+            SwapNumericValue(availableCards, 1, 14);
+
+            return finalHand;
+        }
+
+        private void SwapNumericValue(IEnumerable<Card> cards, int from, int to)
+        {
+            foreach (var card in cards.Where(card => card.NumericalValue == from))
+            {
+                card.NumericalValue = to;
+            }
+        }
+
+        private FinalHand StraightCheck(List<Card> rankableCards, bool acesLow, FinalHand finalHand)
+        {
+            if (acesLow)
+            {
+                SwapNumericValue(rankableCards, 14, 1);
+
+                rankableCards.Sort((x, y) => x.NumericalValue.CompareTo(y.NumericalValue));
+            }
             //remove duplicate card values
             var singlesValueList = StripDuplicates(rankableCards);
             //if count >= 5
@@ -30,7 +67,6 @@ namespace CardGames.Detectors
                         //if cards not concurrent clear list but only if straight (5cards) have not already been detected
                         straightCardsList.Clear();
                     }
-
                 }
                 //strip duplicates
                 straightCardsList = StripDuplicates(straightCardsList);
@@ -39,6 +75,7 @@ namespace CardGames.Detectors
                 {
                     //order
                     straightCardsList.Reverse();
+
                     //map
                     finalHand.card1 = straightCardsList[0];
                     finalHand.card2 = straightCardsList[1];
@@ -50,6 +87,11 @@ namespace CardGames.Detectors
             }
 
             return finalHand;
+        }
+
+        private bool AnyAces(List<Card> rankableCards)
+        {
+            return rankableCards.Exists(element => element.NumericalValue == 14);
         }
 
         private static List<Card> StripDuplicates(IEnumerable<Card> rankableCards)
