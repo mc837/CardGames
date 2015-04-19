@@ -50,7 +50,9 @@
     <Compile Include="Card.cs" />
     <Compile Include="Checker.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="Detectors\FlushDetector.cs" />
     <Compile Include="Detectors\FourOfAKindDetector.cs" />
+    <Compile Include="Detectors\FullhouseDetector.cs" />
     <Compile Include="Detectors\ThreeOfAKindDectector.cs" />
     <Compile Include="Detectors\TwoPairDetector.cs" />
     <Compile Include="Enums\HandRanking.cs" />

@@ -10,12 +10,12 @@ namespace CardGames
         {
 //            new RoyalFlushDetector(),
 //            new StraightFlushDetector(),
-//            new FourOfAKindDetector(),
-//            new FullhouseDetector(),
-//            new FlushDetector(),
+            new FourOfAKindDetector(),
+            new FullhouseDetector(),
+            new FlushDetector(),
 //            new StraightDetector(),
-//            new ThreeOfAKindDectector(),
-//            new TwoPairDectector(),
+            new ThreeOfAKindDectector(),
+            new TwoPairDetector(),
             new PairDectector()
         };
 

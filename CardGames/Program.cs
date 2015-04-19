@@ -58,7 +58,7 @@ namespace CardGames
             Console.WriteLine("");
 
             var score = scorer.Evaluate(hand, communityCards);
-            Console.WriteLine(score);
+            Console.WriteLine(score.rank);
             Console.ReadKey();
         }
     }
