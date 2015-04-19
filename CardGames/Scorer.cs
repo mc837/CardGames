@@ -13,7 +13,7 @@ namespace CardGames
             new FourOfAKindDetector(),
             new FullhouseDetector(),
             new FlushDetector(),
-//            new StraightDetector(),
+            new StraightDetector(),
             new ThreeOfAKindDectector(),
             new TwoPairDetector(),
             new PairDectector()
