@@ -80,10 +80,39 @@ namespace TexasHoldemTests
             };
             var expectedResult = new FinalHand
             {
-                card1 = new Card(13, Suit.Clubs),
-                card2 = new Card(13, Suit.Hearts),
-                card3 = new Card(14, Suit.Hearts),
-                card4 = new Card(14, Suit.Clubs),
+                card1 = new Card(14, Suit.Clubs),
+                card2 = new Card(14, Suit.Hearts),
+                card3 = new Card(13, Suit.Hearts),
+                card4 = new Card(13, Suit.Clubs),
+                card5 = new Card(4, Suit.Hearts),
+                rank = HandRanking.TwoPair
+            };
+
+            OrderCards();
+            var score = check(_handDetector, _availableCards);
+
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public void Should_ReturnhighestTwoPair_When_EvaluatorIsInvoked()
+        {
+            _availableCards = new List<Card>
+            {
+                new Card(14, Suit.Hearts),
+                new Card(2, Suit.Diamonds),
+                new Card(2, Suit.Clubs),
+                new Card(13, Suit.Clubs),
+                new Card(14, Suit.Clubs),
+                new Card(13, Suit.Hearts),
+                new Card(4, Suit.Hearts)
+            };
+            var expectedResult = new FinalHand
+            {
+                card1 = new Card(14, Suit.Clubs),
+                card2 = new Card(14, Suit.Hearts),
+                card3 = new Card(13, Suit.Hearts),
+                card4 = new Card(13, Suit.Clubs),
                 card5 = new Card(4, Suit.Hearts),
                 rank = HandRanking.TwoPair
             };

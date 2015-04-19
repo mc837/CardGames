@@ -3,7 +3,7 @@ using CardGames.Enums;
 
 namespace CardGames.Detectors
 {
-    public class TwoPairDetector: IDetect
+    public class TwoPairDetector : IDetect
     {
         public FinalHand Detect(IEnumerable<Card> availableCards)
         {
@@ -18,22 +18,20 @@ namespace CardGames.Detectors
                 {
                     count++;
                     pairedCards.Add(rankableCards[i]);
-                    pairedCards.Add(rankableCards[i+1]);
+                    pairedCards.Add(rankableCards[i + 1]);
                 }
             }
-            if (count == 2)
+            if (count >= 2)
             {
+                pairedCards.Reverse();
                 // add paired cards to finalhand
                 finalHand.card1 = pairedCards[0];
                 finalHand.card2 = pairedCards[1];
                 finalHand.card3 = pairedCards[2];
                 finalHand.card4 = pairedCards[3];
 
-                //remove pairs from list
-                foreach (var card in pairedCards)
-                {
-                    rankableCards.RemoveAll(c => c.NumericalValue == card.NumericalValue);
-                }
+                rankableCards.RemoveAll(c => c.NumericalValue == finalHand.card1.NumericalValue && 
+                    c.NumericalValue == finalHand.card3.NumericalValue);
 
                 finalHand.card5 = rankableCards[2];
                 finalHand.rank = HandRanking.TwoPair;
