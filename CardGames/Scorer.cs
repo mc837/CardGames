@@ -8,15 +8,16 @@ namespace CardGames
     {
         private readonly List<IDetect> _handDetector = new List<IDetect>
         {
-//            new RoyalFlushDetector(),
-//            new StraightFlushDetector(),
+            new RoyalFlushDetector(),
+            new StraightFlushDetector(),
             new FourOfAKindDetector(),
             new FullhouseDetector(),
             new FlushDetector(),
             new StraightDetector(),
             new ThreeOfAKindDectector(),
             new TwoPairDetector(),
-            new PairDectector()
+            new PairDectector(),
+            new HighCardDetector()
         };
 
         public FinalHand Evaluate(List<Card> playersHand, List<Card> communityCards)
