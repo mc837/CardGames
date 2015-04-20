@@ -54,7 +54,9 @@
     <Compile Include="Detectors\FourOfAKindDetector.cs" />
     <Compile Include="Detectors\FullhouseDetector.cs" />
     <Compile Include="Detectors\HighCardDetector.cs" />
+    <Compile Include="Detectors\RoyalFlushDetector.cs" />
     <Compile Include="Detectors\StraightDetector.cs" />
+    <Compile Include="Detectors\StraightFlushDetector.cs" />
     <Compile Include="Detectors\ThreeOfAKindDectector.cs" />
     <Compile Include="Detectors\TwoPairDetector.cs" />
     <Compile Include="Enums\HandRanking.cs" />
