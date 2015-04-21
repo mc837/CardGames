@@ -24,8 +24,7 @@ namespace TexasHoldemTests
 
         private readonly List<IDetect> _handDetector = new List<IDetect>
         {
-            new RoyalFlushDetector(),
-            new StraightFlushDetector(),
+            new FlushTypeDetector(),
             new FourOfAKindDetector(),
             new FullhouseDetector(),
             new FlushDetector(),
@@ -443,7 +442,36 @@ namespace TexasHoldemTests
         }
 
         [Test]
-        public void Should_ReturnRoyalFlushWithAcesHigh_When_EvaluatorIsInvoked()
+        public void Should_ReturnStraightFlushWithAcesLow_When_EvaluatorIsInvoked()
+        {
+            _availableCards = new List<Card>
+            {
+                new Card(5, Suit.Hearts),
+                new Card(3, Suit.Hearts),
+                new Card(2, Suit.Hearts),
+                new Card(10, Suit.Clubs),
+                new Card(14, Suit.Hearts),
+                new Card(10, Suit.Hearts),
+                new Card(4, Suit.Hearts)
+            };
+            var expectedResult = new FinalHand
+            {
+                card1 = new Card(5, Suit.Hearts),
+                card2 = new Card(4, Suit.Hearts),
+                card3 = new Card(3, Suit.Hearts),
+                card4 = new Card(2, Suit.Hearts),
+                card5 = new Card(14, Suit.Hearts),
+                rank = HandRanking.StraightFlush
+            };
+
+            OrderCards();
+            var score = check(_handDetector, _availableCards);
+
+            Assert.That(score, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public void Should_ReturnRoyalFlush_When_EvaluatorIsInvoked()
         {
             _availableCards = new List<Card>
             {

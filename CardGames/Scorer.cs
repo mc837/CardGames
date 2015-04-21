@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using CardGames.Detectors;
-using CardGames.Enums;
 
 namespace CardGames
 {
@@ -8,8 +7,7 @@ namespace CardGames
     {
         private readonly List<IDetect> _handDetector = new List<IDetect>
         {
-            new RoyalFlushDetector(),
-            new StraightFlushDetector(),
+            new FlushTypeDetector(),
             new FourOfAKindDetector(),
             new FullhouseDetector(),
             new FlushDetector(),
